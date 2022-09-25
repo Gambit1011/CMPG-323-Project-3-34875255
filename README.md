@@ -5,3 +5,8 @@
 * https://www.tutorialsteacher.com/core/dependency-injection-in-aspnet-core
 * https://learn.microsoft.com/en-us/dotnet/api/system.linq.queryable.where?view=net-6.0
 * https://youtu.be/1ck9LIBxO14
+* https://learn.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-6.0
+* https://learn.microsoft.com/en-us/aspnet/mvc/overview/older-versions-1/overview/understanding-models-views-and-controllers-cs
+* https://stackoverflow.com/questions/58548481/in-asp-net-mvc-how-does-a-controller-know-which-view-to-call
+* https://asp.mvc-tutorial.com/views/view-discovery-connecting-controller-view/
+* https://enlear.academy/repository-pattern-and-unit-of-work-with-asp-net-core-web-api-6802e1aa4f78
