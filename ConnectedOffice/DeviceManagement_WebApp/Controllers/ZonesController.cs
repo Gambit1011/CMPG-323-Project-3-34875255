@@ -30,18 +30,7 @@ namespace DeviceManagement_WebApp.Controllers
         // GET: Zones/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            
-            Zone zone = _ZoneRepository.Find(zon => zon.ZoneId == id).FirstOrDefault();               
-            if (zone == null)
-            {
-                return NotFound();
-            }
-
-            return View(zone);
+            return View(await _ZoneRepository.Details(id));
         }
 
         // GET: Zones/Create
@@ -55,28 +44,16 @@ namespace DeviceManagement_WebApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ZoneId,ZoneName,ZoneDescription,DateCreated")] Zone zone)
+        public async Task<IActionResult> Create(Zone zone)
         {
-            zone.ZoneId = Guid.NewGuid();
-            _ZoneRepository.Add(zone);
-            await _ZoneRepository.saveAsync();
-
+            await _ZoneRepository.Create(zone);
             return RedirectToAction(nameof(Index));
         }
 
         // GET: Zones/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            Zone zone = _ZoneRepository.Find(zon => zon.ZoneId == id).FirstOrDefault();
-            if (zone == null)
-            {
-                return NotFound();
-            }
-            return View(zone);
+            return View(await _ZoneRepository.Edit(id));
         }
 
         // POST: Zones/Edit/5
@@ -84,30 +61,9 @@ namespace DeviceManagement_WebApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("ZoneId,ZoneName,ZoneDescription,DateCreated")] Zone zone)
+        public async Task<IActionResult> Edit(Guid id, Zone zone)
         {
-            if (id != zone.ZoneId)
-            {
-                return NotFound();
-            }
-
-            try
-            {
-
-                _ZoneRepository.updateZone(zone);
-                await _ZoneRepository.saveAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ZoneExists(zone.ZoneId))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _ZoneRepository.Edit(id, zone);
             return RedirectToAction(nameof(Index));
 
         }
@@ -115,18 +71,7 @@ namespace DeviceManagement_WebApp.Controllers
         // GET: Zones/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Zone zone = _ZoneRepository.Find(zon => zon.ZoneId== id).FirstOrDefault();
-            if (zone == null)
-            {
-                return NotFound();
-            }
-
-            return View(zone);
+            return View(await _ZoneRepository.Delete(id));
         }
 
         // POST: Zones/Delete/5
@@ -134,16 +79,9 @@ namespace DeviceManagement_WebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            Zone zone = _ZoneRepository.Find(zon => zon.ZoneId == id).FirstOrDefault();
-            _ZoneRepository.Remove(zone);
-            await _ZoneRepository.saveAsync();
-
+            await _ZoneRepository.DeleteConfirmed(id);
             return RedirectToAction(nameof(Index));
         }
-
-        private bool ZoneExists(Guid id)
-        {           
-            return _ZoneRepository.Find(zon => zon.ZoneId == id).Any();
-        }
+        
     }
 }
