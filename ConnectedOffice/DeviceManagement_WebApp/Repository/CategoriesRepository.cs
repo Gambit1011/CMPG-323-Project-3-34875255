@@ -21,7 +21,7 @@ namespace DeviceManagement_WebApp.Repository
             _context.Category.Update(cat);
             return await _context.SaveChangesAsync();
         }
-        public async Task<int> save()
+        public async Task<int> saveAsync()
         {
             return await _context.SaveChangesAsync();
         }

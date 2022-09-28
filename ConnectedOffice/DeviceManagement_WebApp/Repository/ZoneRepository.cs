@@ -1,6 +1,7 @@
 ﻿using DeviceManagement_WebApp.Data;
 using DeviceManagement_WebApp.Models;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DeviceManagement_WebApp.Repository
 {
@@ -13,6 +14,14 @@ namespace DeviceManagement_WebApp.Repository
         public Zone GetMostRecentZone()
         {
             return _context.Zone.OrderByDescending(zone => zone.DateCreated).FirstOrDefault();
+        }
+        public void updateZone(Zone zon)
+        {
+            _context.Zone.Update(zon);
+        }
+        public async Task<int> saveAsync()
+        {
+            return await _context.SaveChangesAsync();
         }
     }
 }

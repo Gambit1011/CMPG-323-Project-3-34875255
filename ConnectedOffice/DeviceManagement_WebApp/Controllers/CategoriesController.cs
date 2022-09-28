@@ -61,7 +61,7 @@ namespace DeviceManagement_WebApp.Controllers
         {
             category.CategoryId = Guid.NewGuid();
             _CategoryRepository.Add(category);
-            await _CategoryRepository.save();
+            await _CategoryRepository.saveAsync();
             //_context.Add(category);
             //await _context.SaveChangesAsync();
             //_CategoryRepository.
@@ -145,7 +145,7 @@ namespace DeviceManagement_WebApp.Controllers
             //await _context.SaveChangesAsync();
             Category category = _CategoryRepository.Find(a => a.CategoryId == id).FirstOrDefault();
             _CategoryRepository.Remove(category);
-            await _CategoryRepository.save();
+            await _CategoryRepository.saveAsync();
             
             return RedirectToAction(nameof(Index));
         }
