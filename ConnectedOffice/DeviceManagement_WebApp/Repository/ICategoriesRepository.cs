@@ -7,6 +7,6 @@ namespace DeviceManagement_WebApp.Repository
     {
         Category GetMostRecentCategory();
         Task<int> updateCategories(Category cat);
-        Task<int> save();
+        Task<int> saveAsync();
     }
 }
