@@ -20,11 +20,13 @@ namespace DeviceManagement_WebApp.Repository
         {
             return _context.Device.OrderByDescending(device => device.DateCreated).FirstOrDefault();
         }
+        // GET: Devices
         public async Task<IList<Device>> Index()
         {
             var connectedOfficeContext = _context.Device.Include(d => d.Category).Include(d => d.Zone);
             return await connectedOfficeContext.ToListAsync();
         }
+        // GET: Devices/Details/5
         public async Task<Device> Details(Guid? id)
         {
             if (id == null)
@@ -43,14 +45,19 @@ namespace DeviceManagement_WebApp.Repository
 
             return device;
         }
+        //GET list of categories to diplay in dropdowns
         public SelectList getListCategory()
         {
             return new SelectList(_context.Category, "CategoryId", "CategoryName");
         }
+        //GET list of Zones to diplay in dropdowns
         public SelectList getListZone()
         {
             return new SelectList(_context.Zone, "ZoneId", "ZoneName");
         }
+        // POST: Devices/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         public async Task<IActionResult> Create([Bind("DeviceId,DeviceName,CategoryId,ZoneId,Status,IsActive,DateCreated")] Device device)
         {
             device.DeviceId = Guid.NewGuid();
@@ -58,14 +65,17 @@ namespace DeviceManagement_WebApp.Repository
             await _context.SaveChangesAsync();
             return null;
         }
+        //GET list of categories to diplay in dropdowns withe the selected category
         public SelectList getListCategoryByID(Guid? id,Device dev)
         {
             return new SelectList(_context.Category, "CategoryId", "CategoryName", dev.CategoryId);
         }
+        //GET list of zone to diplay in dropdowns withe the selected zone
         public SelectList getListZoneByID(Guid? id, Device dev)
         {
             return new SelectList(_context.Zone, "ZoneId", "ZoneName", dev.ZoneId);
         }
+        // GET: Devices/Edit/5
         public async Task<Device> Edit(Guid? id)
         {
             if (id == null)
@@ -81,6 +91,9 @@ namespace DeviceManagement_WebApp.Repository
            
             return device;
         }
+        // POST: Devices/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         public async Task<Device> Edit(Guid id, [Bind("DeviceId,DeviceName,CategoryId,ZoneId,Status,IsActive,DateCreated")] Device device)
         {
             if (id != device.DeviceId)
@@ -106,7 +119,7 @@ namespace DeviceManagement_WebApp.Repository
             return null;
 
         }
-
+        // GET: Devices/Delete/5
         public async Task<Device> Delete(Guid? id)
         {
             if (id == null)
@@ -125,7 +138,7 @@ namespace DeviceManagement_WebApp.Repository
 
             return device;
         }
-
+        // POST: Devices/Delete/5
         public async Task<Device> DeleteConfirmed(Guid id)
         {
             var device = await _context.Device.FindAsync(id);

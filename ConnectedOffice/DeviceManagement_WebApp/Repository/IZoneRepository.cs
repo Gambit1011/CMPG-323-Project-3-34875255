@@ -9,7 +9,6 @@ namespace DeviceManagement_WebApp.Repository
     {
         Zone GetMostRecentZone();        
         void updateZone(Zone zon);
-        Task<int> saveAsync();
         Task<Zone> Details(Guid? id);
         Task<IActionResult> Create([Bind("ZoneId,ZoneName,ZoneDescription,DateCreated")] Zone zone);
         Task<Zone> Edit(Guid? id);

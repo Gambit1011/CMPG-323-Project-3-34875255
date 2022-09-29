@@ -25,13 +25,13 @@ namespace DeviceManagement_WebApp.Controllers
         // GET: Categories
         public async Task<IActionResult> Index()
         {
-            return View(_CategoryRepository.GetAll());
+            return View(_CategoryRepository.GetAll());//Get all categories and send to the view to display
         }
 
         // GET: Categories/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {            
-            return View(await _CategoryRepository.Details(id));
+            return View(await _CategoryRepository.Details(id)); //show more category information per category
         }
 
         // GET: Categories/Create
@@ -48,7 +48,7 @@ namespace DeviceManagement_WebApp.Controllers
         public async Task<IActionResult> Create(Category category)
         {           
             await _CategoryRepository.Create(category);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index)); //redirect the page back to the category list after new category added
         }
 
 

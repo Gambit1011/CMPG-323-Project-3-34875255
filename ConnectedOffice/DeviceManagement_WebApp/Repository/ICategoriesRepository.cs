@@ -9,8 +9,7 @@ namespace DeviceManagement_WebApp.Repository
     public interface ICategoriesRepository : IGenericRepository<Category>
     {
         Category GetMostRecentCategory();
-        Task<int> updateCategories(Category cat);
-        Task<int> saveAsync();        
+        Task<int> updateCategories(Category cat);      
         Task<Category> Details(Guid? id);
         Task<IActionResult> Create([Bind("CategoryId,CategoryName,CategoryDescription,DateCreated")] Category category);
         Task<Category> Edit(Guid? id);

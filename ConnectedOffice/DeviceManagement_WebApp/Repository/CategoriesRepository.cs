@@ -23,12 +23,7 @@ namespace DeviceManagement_WebApp.Repository
         {
             _context.Category.Update(cat);
             return await _context.SaveChangesAsync();
-        }
-        public async Task<int> saveAsync()
-        {
-            return await _context.SaveChangesAsync();
-        }
-        
+        }       
 
         // GET: Categories/Details/5
         public async Task<Category> Details(Guid? id)
@@ -48,11 +43,7 @@ namespace DeviceManagement_WebApp.Repository
             return category;
         }
 
-        // GET: Categories/Create
-        //public IActionResult Create()
-        //{
-        //    return View();
-        //}        
+        // GET: Categories/Create        
         public async Task<IActionResult> Create([Bind("CategoryId,CategoryName,CategoryDescription,DateCreated")] Category category)
         {
             category.CategoryId = Guid.NewGuid();
@@ -76,6 +67,7 @@ namespace DeviceManagement_WebApp.Repository
             }
             return category;
         }      
+        //save changes to db
         public async Task<IActionResult> Edit(Guid id, [Bind("CategoryId,CategoryName,CategoryDescription,DateCreated")] Category category)
         {
             if (id != category.CategoryId)
@@ -118,7 +110,7 @@ namespace DeviceManagement_WebApp.Repository
 
             return (category);
         }
-
+        //Commit the deletion to database
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var category = await _context.Category.FindAsync(id);

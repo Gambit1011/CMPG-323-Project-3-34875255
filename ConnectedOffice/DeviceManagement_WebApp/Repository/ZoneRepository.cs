@@ -22,10 +22,6 @@ namespace DeviceManagement_WebApp.Repository
         {
             _context.Zone.Update(zon);
         }
-        public async Task<int> saveAsync()
-        {
-            return await _context.SaveChangesAsync();
-        }
 
         // GET: Categories/Details/5
         public async Task<Zone> Details(Guid? id)
@@ -114,7 +110,7 @@ namespace DeviceManagement_WebApp.Repository
 
             return (zone);
         }
-
+        //Confirm Delete And Commit to db
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var zone = await _context.Zone.FindAsync(id);
