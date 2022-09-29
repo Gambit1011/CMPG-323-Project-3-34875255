@@ -1,6 +1,8 @@
 # CMPG-323-Project-3-34875255
 Project is to build an interface to connect to the database, that implements RESTful services with the MVC Pattern design.
 The project is intended for users to be able to register and manage IoT Device.
+
+Can Access the Web App from This link https://cmpg-323-iot-device-management-34875255.azurewebsites.net/
 # Content of this project
 Tier 2 Architecture design pattern
 Project implements 4 Views, 4 Controllers and Repositories.
