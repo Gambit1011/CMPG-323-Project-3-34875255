@@ -26,8 +26,11 @@ each controller implements its own repository with its own unique code to that c
 
 # App Published to azure
 ![What is this](Azure Home.jpg)
+
 ![What is this](Azure app service.jpg)
+
 ![What is this](AppDetails.jpg)
+
 ![What is this](AppUploaded.jpg)
 
 
